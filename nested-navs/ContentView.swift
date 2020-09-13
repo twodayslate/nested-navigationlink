@@ -7,10 +7,34 @@
 
 import SwiftUI
 
+struct CellView: View {
+    var body: some View {
+        VStack {
+            Text("Not a link start")
+            NavigationLink(destination: NamedView(name: "inner")) {
+                Text("You can't click this NavigationLink")
+            }.isDetailLink(true)
+            Text("Not a link end")
+        }
+    }
+}
+
+struct NamedView: View {
+    var name: String
+    var body: some View {
+        Text(name).navigationTitle(name)
+    }
+}
+
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        NavigationView {
+            List(0..<2) { ind in
+                NavigationLink(destination: NamedView(name: "\(ind)")) {
+                    CellView()
+                }
+            }.navigationTitle("NavigationLinks")
+        }
     }
 }
 
