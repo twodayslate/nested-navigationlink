@@ -13,7 +13,7 @@ struct CellView: View {
             Text("Not a link start")
             NavigationLink(destination: NamedView(name: "inner")) {
                 Text("You can't click this NavigationLink")
-            }.isDetailLink(true)
+            }
             Text("Not a link end")
         }
     }
